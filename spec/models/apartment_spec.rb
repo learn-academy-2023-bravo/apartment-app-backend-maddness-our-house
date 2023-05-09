@@ -37,7 +37,37 @@ RSpec.describe Apartment, type: :model do
   end
 
   # city test - ray
+  it('should validate city') do
+    apartment = user.apartments.create(
+      street: '5 main street',
+      unit: '7A',
+      state: 'stateName',
+      square_footage: 1400,
+      price: '1600',
+      bedrooms: 3,
+      bathrooms: 1.5,
+      pets: 'yes!',
+      image: 'image.url'
+    )
+
+    expect(apartment.errors[:city]).to include "can't be blank"
+  end
   # state test - ray
+  it('should validate state') do
+    apartment = user.apartments.create(
+      street: '5 main street',
+      unit: '7A',
+      city: 'burg',
+      square_footage: 1400,
+      price: '1600',
+      bedrooms: 3,
+      bathrooms: 1.5,
+      pets: 'yes!',
+      image: 'image.url'
+    )
+
+    expect(apartment.errors[:state]).to include "can't be blank"
+  end
   # square_footage test - dre
   # price test - dre
   # bedrooms test - dre
